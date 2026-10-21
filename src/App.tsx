@@ -5,6 +5,7 @@ import { FIVE_LENSES } from './data/lenses';
 import { FiveLensesView } from './components/FiveLensesView';
 import { PlaygroundsView } from './components/PlaygroundsView';
 import { ConceptAtlasView } from './components/ConceptAtlasView';
+import { OnboardingView } from './components/OnboardingView';
 import {
   Compass,
   Play,
@@ -18,11 +19,11 @@ import {
   Moon,
 } from 'lucide-react';
 
-type ActiveTab = 'lenses' | 'playgrounds' | 'atlas';
+type ActiveTab = 'onboarding' | 'lenses' | 'playgrounds' | 'atlas';
 type ThemeMode = 'dark' | 'light';
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState<ActiveTab>('lenses');
+  const [activeTab, setActiveTab] = useState<ActiveTab>('onboarding');
   const [selectedLensId, setSelectedLensId] = useState<LensId>('drive-conflict');
   const [activePlaygroundId, setActivePlaygroundId] = useState<PlaygroundId>('defense-switchboard');
   const [activePresetId, setActivePresetId] = useState<string | undefined>('repression');
@@ -63,6 +64,12 @@ export default function App() {
     ).slice(0, 7);
   }, [quickSearch]);
 
+  const handleOpenLens = (lensId: LensId) => {
+    setSelectedLensId(lensId);
+    setActiveTab('lenses');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   const handleOpenPlayground = (playgroundId: PlaygroundId, presetId?: string) => {
     setActivePlaygroundId(playgroundId);
     setActivePresetId(presetId);
@@ -85,7 +92,7 @@ export default function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex flex-wrap items-center justify-between gap-3">
           {/* Brand Logo */}
           <button
-            onClick={() => setActiveTab('lenses')}
+            onClick={() => setActiveTab('onboarding')}
             className="flex items-center gap-3 text-left group"
           >
             <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-indigo-500 via-violet-500 to-rose-500 flex items-center justify-center shadow-lg shadow-indigo-500/20">
@@ -105,10 +112,25 @@ export default function App() {
           </button>
 
           {/* Primary Navigation Tabs */}
-          <nav className="flex items-center gap-1.5 bg-slate-900/90 p-1.5 rounded-2xl border border-slate-800">
+          <nav className="flex flex-wrap items-center gap-1.5 bg-slate-900/90 p-1.5 rounded-2xl border border-slate-800">
+            <button
+              onClick={() => setActiveTab('onboarding')}
+              className={`px-3 py-2 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition ${
+                activeTab === 'onboarding'
+                  ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30'
+                  : 'text-slate-300 hover:text-white hover:bg-slate-800/60'
+              }`}
+            >
+              <Sparkles className="w-3.5 h-3.5" />
+              <span>0. Start Here</span>
+              <span className="hidden lg:inline-block text-[10px] font-mono opacity-80">
+                (Orientation)
+              </span>
+            </button>
+
             <button
               onClick={() => setActiveTab('lenses')}
-              className={`px-3.5 py-2 rounded-xl text-xs font-semibold flex items-center gap-2 transition ${
+              className={`px-3 py-2 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition ${
                 activeTab === 'lenses'
                   ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30'
                   : 'text-slate-300 hover:text-white hover:bg-slate-800/60'
@@ -116,29 +138,29 @@ export default function App() {
             >
               <Compass className="w-3.5 h-3.5" />
               <span>1. The 5 Lenses</span>
-              <span className="hidden sm:inline-block text-[10px] font-mono opacity-80">
-                (Start Here)
+              <span className="hidden lg:inline-block text-[10px] font-mono opacity-80">
+                (5 Schools)
               </span>
             </button>
 
             <button
               onClick={() => setActiveTab('playgrounds')}
-              className={`px-3.5 py-2 rounded-xl text-xs font-semibold flex items-center gap-2 transition ${
+              className={`px-3 py-2 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition ${
                 activeTab === 'playgrounds'
                   ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30'
                   : 'text-slate-300 hover:text-white hover:bg-slate-800/60'
               }`}
             >
               <Play className="w-3.5 h-3.5 fill-current" />
-              <span>2. Dynamic Playgrounds</span>
-              <span className="hidden sm:inline-block text-[10px] font-mono opacity-80">
+              <span>2. Playgrounds</span>
+              <span className="hidden lg:inline-block text-[10px] font-mono opacity-80">
                 (3 Labs)
               </span>
             </button>
 
             <button
               onClick={() => setActiveTab('atlas')}
-              className={`px-3.5 py-2 rounded-xl text-xs font-semibold flex items-center gap-2 transition ${
+              className={`px-3 py-2 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition ${
                 activeTab === 'atlas'
                   ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30'
                   : 'text-slate-300 hover:text-white hover:bg-slate-800/60'
@@ -146,7 +168,7 @@ export default function App() {
             >
               <BookOpen className="w-3.5 h-3.5" />
               <span>3. Concept Atlas</span>
-              <span className="hidden sm:inline-block text-[10px] font-mono opacity-80">
+              <span className="hidden lg:inline-block text-[10px] font-mono opacity-80">
                 ({CONCEPTS.length})
               </span>
             </button>
@@ -239,6 +261,14 @@ export default function App() {
           if (quickSearchOpen) setQuickSearchOpen(false);
         }}
       >
+        {activeTab === 'onboarding' && (
+          <OnboardingView
+            onOpenLens={handleOpenLens}
+            onOpenPlayground={handleOpenPlayground}
+            onInspectConcept={handleInspectConcept}
+          />
+        )}
+
         {activeTab === 'lenses' && (
           <FiveLensesView
             selectedLensId={selectedLensId}

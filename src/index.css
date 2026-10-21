@@ -66,6 +66,7 @@ html.theme-light .bg-slate-900\/95,
 html.theme-light .bg-slate-900\/90,
 html.theme-light .bg-slate-900\/85,
 html.theme-light .bg-slate-900\/80,
+html.theme-light .bg-slate-900\/75,
 html.theme-light .bg-slate-900\/70 {
   background-color: #ffffff !important;
 }
@@ -113,6 +114,8 @@ html.theme-light .bg-amber-950\/35 {
   background-color: #fffbeb !important;
 }
 html.theme-light .bg-violet-950\/20,
+html.theme-light .bg-indigo-950\/20,
+html.theme-light .bg-indigo-950\/25,
 html.theme-light .bg-indigo-950\/30,
 html.theme-light .bg-indigo-950\/40,
 html.theme-light .bg-indigo-950\/50,
@@ -125,6 +128,7 @@ html.theme-light .bg-sky-950\/25,
 html.theme-light .bg-sky-950\/35 {
   background-color: #f0f9ff !important;
 }
+html.theme-light .bg-emerald-950\/15,
 html.theme-light .bg-emerald-950\/20,
 html.theme-light .bg-emerald-950\/25,
 html.theme-light .bg-emerald-950\/30,
@@ -149,6 +153,8 @@ html.theme-light .text-white {
 }
 html.theme-light .bg-indigo-600.text-white,
 html.theme-light .bg-indigo-600 .text-white,
+html.theme-light .bg-emerald-600.text-white,
+html.theme-light .bg-emerald-600 .text-white,
 html.theme-light .from-indigo-500 .text-white {
   color: #ffffff !important;
 }

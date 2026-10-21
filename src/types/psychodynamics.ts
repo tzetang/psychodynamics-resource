@@ -218,3 +218,100 @@ export interface CCRTPatternScenario {
     };
   };
 }
+
+// ============================================================================
+// Curated Onboarding ("0. Start Here: Orientation") Interfaces
+// ============================================================================
+
+export interface OnboardingPillar {
+  id: string;
+  number: string;
+  plainEnglishTitle: string;
+  everydayQuestion: string;
+  coreIdea: string;
+  concreteExample: string;
+  shedlerEmpiricalAnchor: string;
+  accentColor: 'indigo' | 'emerald' | 'amber' | 'rose';
+}
+
+export interface SurfaceVsDepthComparison {
+  id: string;
+  everydayProblem: string;
+  personQuote: string;
+  surfaceView: {
+    label: string;
+    assumption: string;
+    typicalAdvice: string;
+    whyItOftenStalls: string;
+  };
+  psychodynamicView: {
+    label: string;
+    hiddenFunction: string;
+    curiousQuestion: string;
+    whatChanges: string;
+  };
+}
+
+export interface RealWorldBehaviorScenario {
+  id: string;
+  categoryTag: string;
+  title: string;
+  subtitle: string;
+  everydaySituation: string;
+  consciousStory: string;
+  underneathBreakdown: {
+    hiddenWishOrFeeling: string;
+    whyItFeelsUnsafe: string;
+    sidewaysProtectiveMove: string;
+    theIronyOrCost: string;
+  };
+  researchInspiration: {
+    studyOrFramework: string;
+    researchers: string;
+    plainEnglishFinding: string;
+  };
+  formalBridge: {
+    formalConceptName: string;
+    whyItHasThisName: string;
+    linkedConceptId: string;
+    linkedLensId: LensId;
+    linkedPlayground: PlaygroundDeepLink;
+  };
+}
+
+export interface HistoricalEvolutionEra {
+  id: string;
+  stepNumber: number;
+  eraYears: string;
+  chapterTitle: string;
+  humanPuzzle: string;
+  whatPreviousViewMissed: string;
+  breakthroughIdea: string;
+  keyFigures: string[];
+  everydayTakeaway: string;
+  modernResearchConnection: string;
+  linkedLensId: LensId;
+}
+
+export interface MythVsRealityItem {
+  id: string;
+  mythHeadline: string;
+  whyPeopleThinkThis: string;
+  empiricalRealityHeadline: string;
+  evidenceSummary: string;
+  keyCitation: string;
+  linkedConceptId: string;
+}
+
+export interface StarterPathway {
+  id: string;
+  badge: string;
+  title: string;
+  whoThisIsFor: string;
+  whatYouWillExplore: string;
+  accentColor: 'indigo' | 'emerald' | 'amber' | 'rose';
+  recommendedLensId: LensId;
+  recommendedPlayground: PlaygroundDeepLink;
+  recommendedConceptIds: string[];
+}
+
